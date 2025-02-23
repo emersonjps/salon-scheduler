@@ -3,10 +3,17 @@ import { Body, Controller, Post, HttpCode, HttpStatus, UseGuards, Get, Request }
 import { AuthService } from './auth.service';
 import UserAuthDto from './dto/UserAuthDto';
 import { AuthGuard } from './auth.guard';
+import UserRegisterAuthDto from './dto/UserRegisterAuthDto';
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
+
+  @HttpCode(HttpStatus.CREATED)
+  @Post('register')
+  signUp(@Body() signUpDto: UserRegisterAuthDto) {
+    return this.authService.signUp(signUpDto);
+  }
 
   @HttpCode(HttpStatus.OK)
   @Post('login')
