@@ -1,4 +1,5 @@
 import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import { UserRole } from 'src/auth/constants/User.Roles';
 
 @Table({
   tableName: 'users',
@@ -11,6 +12,9 @@ export default class User extends Model<User> {
     primaryKey: true,
   })
   id: number;
+
+  @Column({ type: DataType.ENUM(...Object.values(UserRole)), allowNull: false })
+  role: UserRole;
 
   @Column({
     type: DataType.STRING,

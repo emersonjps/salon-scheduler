@@ -1,6 +1,7 @@
 
 import { Sequelize } from 'sequelize-typescript';
 import User from './models/user.model.js';
+import { Schedule } from './models/schedule.model.js';
 
 export const databaseProviders = [
   {
@@ -15,7 +16,8 @@ export const databaseProviders = [
         database: 'meu_postgres',
       });
       sequelize.addModels([
-        User
+        User,
+        Schedule,
     ]);
       await sequelize.sync();
       return sequelize;
