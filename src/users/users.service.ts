@@ -7,8 +7,6 @@ export class UsersService {
   constructor(
       private user: typeof User
   ) {}
-  
-
   async create(user: User): Promise<User> {
     return this.user.create(user);
   }
