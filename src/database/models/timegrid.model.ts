@@ -1,5 +1,6 @@
-import { Table, Column, Model, DataType, ForeignKey } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
 import User from './user.model';
+import SlotInterface from 'src/interfaces/SlotInterface';
 
 @Table({ tableName: 'timegrid' })
 export class TimeGrid extends Model<TimeGrid> {
@@ -17,5 +18,8 @@ export class TimeGrid extends Model<TimeGrid> {
   workEndTime: string;
 
   @Column({ type: DataType.JSONB, allowNull: false })
-  slots: { startTime: string; endTime: string; available: boolean }[];
+  slots: SlotInterface[];
+
+  @BelongsTo(() => User)
+  professional: User;
 }
