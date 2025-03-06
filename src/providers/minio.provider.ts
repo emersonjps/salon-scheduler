@@ -16,9 +16,6 @@ export class MinioService {
   }
 
   async uploadFile(bucketName: string, file: Express.Multer.File): Promise<string> {
-
-    console.log(file);
-
     const fileName = `${Date.now()}-${file.originalname}`;
 
     await this.minioClient.putObject(bucketName, fileName, file.buffer, undefined, {

@@ -36,16 +36,8 @@ export default class User extends Model<User> {
   password: string;
 
   @Column({
-    type: DataType.DATE,
-    allowNull: false,
-    defaultValue: DataType.NOW,
+    type: DataType.STRING,
+    allowNull: true,
   })
-  created_at: Date;
-
-  @Column({
-    type: DataType.DATE,
-    allowNull: false,
-    defaultValue: DataType.NOW,
-  })
-  updated_at: Date;
+  imageUrl: string;
 }
