@@ -22,6 +22,6 @@ export class MinioService {
       'Content-Type': file.mimetype,
     });
 
-    return `http//localhost:9001/${bucketName}/${fileName}`;
+    return `http://localhost:9000/api/v1/download-shared-object/${bucketName}/${fileName}`;
   }
 }
