@@ -9,25 +9,25 @@ import UserSignUpAuthDto from './dto/UserRegisterAuthDto';
 export class AuthService {
   constructor(
     private usersService: UsersService,
-    private jwtService: JwtService
+    private jwtService: JwtService,
   ) {}
 
-  async signUp( _user: UserSignUpAuthDto ): Promise<{ access_token: string }> {
+  async signUp(_user: UserSignUpAuthDto): Promise<{ access_token: string }> {
     const salt = await bcrypt.genSalt();
     _user.password = await bcrypt.hash(_user.password, salt);
     const user = await this.usersService.create(_user);
-    const payload = { sub: user.id, username: user.email, name: user.name };
+    const payload = { sub: user.id, email: user.email, name: user.name };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
   }
 
-  async signIn( _user: UserAuthDto ): Promise<{ access_token: string }> {
+  async signIn(_user: UserAuthDto): Promise<{ access_token: string }> {
     const user = await this.usersService.findOne(_user.email);
     if (!user || !(await bcrypt.compare(_user.password, user.password))) {
       throw new UnauthorizedException();
     }
-    const payload = { sub: user.id, username: user.email, name: user.name };
+    const payload = { sub: user.id, email: user.email, name: user.name };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
