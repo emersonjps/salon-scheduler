@@ -8,7 +8,7 @@ export class MinioService {
   constructor() {
     this.minioClient = new Client({
       endPoint: 'localhost',
-      port: 9000,
+      port: 9001,
       useSSL: false,
       accessKey: 'admin',
       secretKey: 'admin123',
@@ -22,6 +22,6 @@ export class MinioService {
       'Content-Type': file.mimetype,
     });
 
-    return `http://localhost:9000/api/v1/download-shared-object/${bucketName}/${fileName}`;
+    return `http://localhost:9000/${bucketName}/${fileName}`;
   }
 }
