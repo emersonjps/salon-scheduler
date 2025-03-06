@@ -3,7 +3,6 @@ import { TimeGridService } from './timegrid.service';
 import { CreateTimeGridDto } from './dto/create-timegrid.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { UpdateTimeGridDto } from './dto/update-timegrid.dto';
-import { UserRole } from 'src/auth/constants/User.Roles';
 
 @Controller('timegrid')
 export class TimeGridController {
