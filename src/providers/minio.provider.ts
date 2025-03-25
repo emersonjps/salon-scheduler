@@ -8,10 +8,10 @@ export class MinioService {
   constructor() {
     this.minioClient = new Client({
       endPoint: 'localhost',
-      port: 9001,
+      port: parseInt(process.env.MINIO_PORT || '9000', 10),
       useSSL: false,
-      accessKey: 'admin',
-      secretKey: 'admin123',
+      accessKey: process.env.MINIO_ACCESS_KEY,
+      secretKey: process.env.MINIO_SECRET_KEY,
     });
   }
 
@@ -22,6 +22,6 @@ export class MinioService {
       'Content-Type': file.mimetype,
     });
 
-    return `http://localhost:9000/${bucketName}/${fileName}`;
+    return `http://localhost:${process.env.MINIO_PORT || '9000'}/${bucketName}/${fileName}`;
   }
 }
