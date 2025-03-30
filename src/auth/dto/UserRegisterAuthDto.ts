@@ -1,4 +1,4 @@
-import User from "src/database/models/user.model";
+import { User } from '@common/models';
 
 export default interface UserRegisterAuthDto extends User {
     name: string;
