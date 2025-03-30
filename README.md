@@ -23,23 +23,21 @@
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ### Comandos Docker para desenvolvimento 
-Listar container: 
-```bash
-docker ps -a
+Como subir os serviços docker
+Subir os serviços
+```sh
+docker-compose up -d
+````
+
+Verificar os logs
+```sh
+docker-compose logs -f
 ```
-Excutar container: 
-Acessar container postgres: 
-```bash
-docker exec -it meu-postgres psql -U postgres
-```
-Parar:
-```bash
-docker stop meu-postgres
-```
-Iniciar: 
-```bash
-docker start meu-postgres
-```
+
+Parar os serviços
+```sh
+docker-compose down
+````
 
 ## Description
 
