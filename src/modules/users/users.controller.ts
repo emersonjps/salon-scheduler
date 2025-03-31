@@ -1,8 +1,10 @@
-import { Body, Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Controller, Param, Post, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { MinioService } from '../../providers/minio.provider';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UsersService } from './users.service';
+import { AuthGuard } from 'src/auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('users')
 export class UserController {
   constructor(
@@ -12,10 +14,10 @@ export class UserController {
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
-  async uploadUserImage(@UploadedFile() file: Express.Multer.File, @Body() body: {user_id: number}) {
+  async uploadUserImage(@UploadedFile() file: Express.Multer.File, @Param('user_id') user_id: number) {
     const imageUrl = await this.minioService.uploadFile(process.env.BUCKET_NAME, file);
     
-    this.usersService.saveUserImage(body.user_id, imageUrl);
+    this.usersService.saveUserImage(user_id, imageUrl);
     return { imageUrl };
   }
 }
