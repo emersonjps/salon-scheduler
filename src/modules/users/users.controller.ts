@@ -12,11 +12,10 @@ export class UserController {
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
-  async uploadUserImage(@UploadedFile() file: Express.Multer.File, @Body() body: {userId: number}) {
+  async uploadUserImage(@UploadedFile() file: Express.Multer.File, @Body() body: {user_id: number}) {
     const imageUrl = await this.minioService.uploadFile(process.env.BUCKET_NAME, file);
     
-    // Aqui você salvaria `imageUrl` no banco de dados junto ao usuário
-    this.usersService.saveUserImage(body.userId, imageUrl);
+    this.usersService.saveUserImage(body.user_id, imageUrl);
     return { imageUrl };
   }
 }
