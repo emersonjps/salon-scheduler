@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { TimeGridService } from './timegrid.service';
 import { CreateTimeGridDto } from './dto/create-timegrid.dto';
 import { AuthGuard } from 'src/auth/auth.guard';

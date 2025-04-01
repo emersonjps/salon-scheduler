@@ -16,7 +16,13 @@ export class AuthService {
     const salt = await bcrypt.genSalt();
     _user.password = await bcrypt.hash(_user.password, salt);
     const user = await this.usersService.create(_user);
-    const payload = { sub: user.id, email: user.email, name: user.name, role: user.role, imageUrl: user.imageUrl };
+    const payload = {
+      sub: user.id,
+      email: user.email,
+      name: user.name,
+      role: user.role,
+      imageUrl: user.imageUrl,
+    };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
@@ -27,7 +33,13 @@ export class AuthService {
     if (!user || !(await bcrypt.compare(_user.password, user.password))) {
       throw new UnauthorizedException();
     }
-    const payload = { sub: user.id, email: user.email, name: user.name, role: user.role, imageUrl: user.imageUrl };
+    const payload = {
+      sub: user.id,
+      email: user.email,
+      name: user.name,
+      role: user.role,
+      imageUrl: user.imageUrl,
+    };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };

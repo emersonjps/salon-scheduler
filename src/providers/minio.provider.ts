@@ -15,12 +15,21 @@ export class MinioService {
     });
   }
 
-  async uploadFile(bucketName: string, file: Express.Multer.File): Promise<string> {
+  async uploadFile(
+    bucketName: string,
+    file: Express.Multer.File,
+  ): Promise<string> {
     const fileName = `${Date.now()}-${file.originalname}`;
 
-    await this.minioClient.putObject(bucketName, fileName, file.buffer, undefined, {
-      'Content-Type': file.mimetype,
-    });
+    await this.minioClient.putObject(
+      bucketName,
+      fileName,
+      file.buffer,
+      undefined,
+      {
+        'Content-Type': file.mimetype,
+      },
+    );
 
     return `http://localhost:${process.env.MINIO_PORT || '9000'}/${bucketName}/${fileName}`;
   }
