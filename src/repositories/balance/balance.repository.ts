@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 // import { InjectModel } from '@nestjs/sequelize';
-import { CompanyClosingBalanceDaily } from '@common/models/company-closing-balance-daily.model';
-import { WhereOptions, literal, Op } from 'sequelize';
+// import { CompanyClosingBalanceDaily } from '@common/models/company-closing-balance-daily.model';
+// import { WhereOptions, literal, Op } from 'sequelize';
 // import { CalculateBalanceDto } from '@modules/balance/dto/balance.dto';
 
 // type Balance = {
