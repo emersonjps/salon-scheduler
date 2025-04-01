@@ -3,12 +3,13 @@ import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 import { IS_PUBLIC_KEY, ROLES_KEY } from './roles.decorator';
 import { JwtService } from '@nestjs/jwt';
+import { JwtPayload } from './interface/JwtPayload';
 
 @Injectable()
 export class JwtAuthGuard extends AuthGuard('jwt') {
     constructor(
         private reflector: Reflector,
-        private jwtService: JwtService, // Inject JwtService to verify the token
+        private jwtService: JwtService,
     ) {
         super();
     }
@@ -37,11 +38,6 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
         const token = authorizationHeader ? authorizationHeader.split(' ')[1] : undefined;
         if (!token) {
             throw new UnauthorizedException('No token provided');
-        }
-
-        interface JwtPayload {
-            role: string;
-            // Add other properties expected in the payload if needed
         }
 
         const payload = this.jwtService.verify<JwtPayload>(token);
