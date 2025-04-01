@@ -6,19 +6,19 @@ import { Public } from './roles.decorator';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+    constructor(private authService: AuthService) {}
 
-  @Public()
-  @HttpCode(HttpStatus.CREATED)
-  @Post('register')
-  signUp(@Body() signUpDto: UserRegisterAuthDto) {
-    return this.authService.signUp(signUpDto);
-  }
+    @Public()
+    @HttpCode(HttpStatus.CREATED)
+    @Post('register')
+    signUp(@Body() signUpDto: UserRegisterAuthDto) {
+        return this.authService.signUp(signUpDto);
+    }
 
-  @Public()
-  @HttpCode(HttpStatus.OK)
-  @Post('login')
-  signIn(@Body() signInDto: UserAuthDto) {
-    return this.authService.signIn(signInDto);
-  }
+    @Public()
+    @HttpCode(HttpStatus.OK)
+    @Post('login')
+    signIn(@Body() signInDto: UserAuthDto) {
+        return this.authService.signIn(signInDto);
+    }
 }

@@ -4,8 +4,8 @@ import { UserController } from './users.controller';
 import { MinioService } from 'src/providers/minio.provider';
 
 @Module({
-  providers: [UsersService, MinioService],
-  controllers: [UserController],
-  exports: [UsersService],
+    providers: [UsersService, MinioService],
+    controllers: [UserController],
+    exports: [UsersService],
 })
 export class UsersModule {}
