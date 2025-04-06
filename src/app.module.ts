@@ -9,6 +9,7 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { ScheduleModule } from '@modules/schedule/schedule.module';
 import { HolidayModule } from '@modules/holiday/holiday.module';
 import { TimeSlotModule } from '@modules/time-slot/time-slot.module';
+import { AppointmentsModule } from '@modules/appointment/appointment.module';
 
 @Module({
     imports: [
@@ -20,6 +21,7 @@ import { TimeSlotModule } from '@modules/time-slot/time-slot.module';
         ScheduleModule,
         HolidayModule,
         TimeSlotModule,
+        AppointmentsModule,
     ],
     providers: [
         {
