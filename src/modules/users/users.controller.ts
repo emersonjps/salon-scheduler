@@ -10,7 +10,9 @@ import { Request } from 'express';
 import { JwtPayload } from 'src/auth/interface/JwtPayload';
 import UserChangePasswordDto from 'src/auth/dto/UserChangePasswordDto';
 import * as bcrypt from 'bcrypt';
+import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('users')
 @UseGuards(AuthGuard)
 @Controller('users')
 export class UserController {
@@ -21,6 +23,7 @@ export class UserController {
     ) {}
 
     @Post('upload')
+    @ApiBody({ type: 'multipart/form-data' })
     @UseInterceptors(FileInterceptor('file'))
     async uploadImage(@UploadedFile() file: Express.Multer.File, @Req() req: Request) {
         const token = req.headers.authorization?.split(' ')[1];
@@ -41,6 +44,8 @@ export class UserController {
     }
 
     @Post('change-password')
+    @ApiBearerAuth('jwt-auth')
+    @ApiBody({ type: UserChangePasswordDto })
     async changePassword(@Req() req: Request, @Body() body: UserChangePasswordDto) {
         const token = req.headers.authorization?.split(' ')[1];
         if (!token) {

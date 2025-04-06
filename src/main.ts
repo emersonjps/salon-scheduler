@@ -9,6 +9,16 @@ async function bootstrap() {
         .setTitle('Schedule API')
         .setDescription('The scheluder API description')
         .setVersion('1.0')
+        .addBearerAuth(
+            {
+                type: 'http',
+                scheme: 'bearer',
+                bearerFormat: 'JWT',
+                name: 'Authorization',
+                in: 'header',
+            },
+            'jwt-auth', // <- nome do esquema, usado abaixo
+        )
         .build();
     const documentFactory = () => SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('api', app, documentFactory);
