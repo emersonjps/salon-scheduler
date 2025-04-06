@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UserController } from './users.controller';
 import { MinioService } from 'src/providers/minio.provider';
-import { UserRepository } from '@repositories/balance/user.repository';
+import { UserRepository } from '@repositories/user.repository';
 
 @Module({
     providers: [UsersService, MinioService, UserRepository],
