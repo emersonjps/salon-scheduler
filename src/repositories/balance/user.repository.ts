@@ -17,11 +17,11 @@ export class UserRepository {
         return await this.user.findOne({ where: { email } });
     }
 
-    async updateImage(user_id: number, imageUrl: string): Promise<any> {
+    async updateImage(user_id: number, imageUrl: string) {
         return await this.user.update({ imageUrl }, { where: { id: user_id } });
     }
 
-    async changePassword(user_id: number, password: string): Promise<any> {
+    async changePassword(user_id: number, password: string) {
         return await this.user.update({ password }, { where: { id: user_id } });
     }
 }
