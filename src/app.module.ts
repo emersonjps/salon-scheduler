@@ -7,9 +7,20 @@ import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { ScheduleModule } from '@modules/schedule/schedule.module';
+import { HolidayModule } from '@modules/holiday/holiday.module';
+import { TimeSlotModule } from '@modules/time-slot/time-slot.module';
 
 @Module({
-    imports: [ConfigModule.forRoot(), AppConfigModule, DatabaseModule, AuthModule, UsersModule, ScheduleModule],
+    imports: [
+        ConfigModule.forRoot(),
+        AppConfigModule,
+        DatabaseModule,
+        AuthModule,
+        UsersModule,
+        ScheduleModule,
+        HolidayModule,
+        TimeSlotModule,
+    ],
     providers: [
         {
             provide: APP_GUARD,
