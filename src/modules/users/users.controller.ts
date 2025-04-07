@@ -5,12 +5,11 @@ import { UsersService } from './users.service';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Roles } from 'src/auth/roles.decorator';
 import { UserRole } from 'src/auth/constants/User.Roles';
-import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
-import { JwtPayload } from 'src/auth/interface/JwtPayload';
 import UserChangePasswordDto from 'src/auth/dto/UserChangePasswordDto';
 import * as bcrypt from 'bcrypt';
 import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
+import JwtUtils from '@utils/jwt-decode-token';
 
 @ApiTags('users')
 @UseGuards(AuthGuard)
@@ -19,7 +18,7 @@ export class UserController {
     constructor(
         private readonly minioService: MinioService,
         private readonly usersService: UsersService,
-        private readonly JWtService: JwtService,
+        private readonly jwtUtils: JwtUtils,
     ) {}
 
     @Post('upload')
@@ -31,8 +30,11 @@ export class UserController {
             throw new Error('No token provided');
         }
 
-        const decodedToken = this.JWtService.decode<JwtPayload>(token);
+        const decodedToken = this.jwtUtils.decodeToken(req);
         const user_id = decodedToken.sub;
+        if (!user_id) {
+            throw new Error('No user ID provided');
+        }
 
         const imageUrl = await this.minioService.uploadFile(process.env.BUCKET_NAME, file);
         if (!imageUrl) {
@@ -52,8 +54,11 @@ export class UserController {
             throw new Error('No token provided');
         }
 
-        const decodedToken = this.JWtService.decode<JwtPayload>(token);
+        const decodedToken = this.jwtUtils.decodeToken(req);
         const user_id = decodedToken.sub;
+        if (!user_id) {
+            throw new Error('No user ID provided');
+        }
 
         const { password } = body;
         if (!password) {
