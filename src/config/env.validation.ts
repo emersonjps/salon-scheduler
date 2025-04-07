@@ -54,13 +54,38 @@ class EnvironmentVariables {
     @IsOptional()
     DB_REPLICA_HOST: string;
 
-    @IsNumber()
-    @Min(1)
-    SCHEDULER_DB_POOL_MAX: number;
+    // @IsNumber()
+    // @Min(1)
+    // SCHEDULER_DB_POOL_MAX: number;
+
+    // @IsNumber()
+    // @Min(1)
+    // SCHEDULER_DB_POOL_MIN: number;
+
+    @IsString()
+    @IsNotEmpty()
+    MINIO_END_POINT: string;
 
     @IsNumber()
-    @Min(1)
-    SCHEDULER_DB_POOL_MIN: number;
+    @Min(0)
+    @Max(65535)
+    MINIO_PORT: number;
+
+    @IsString()
+    @IsNotEmpty()
+    MINIO_ACCESS_KEY: string;
+
+    @IsString()
+    @IsNotEmpty()
+    MINIO_SECRET_KEY: string;
+
+    @IsString()
+    @IsNotEmpty()
+    BUCKET_NAME: string;
+
+    @IsString()
+    @IsNotEmpty()
+    JWT_SECRET: string;
 }
 
 export function validate(config: Record<string, unknown>) {
@@ -72,9 +97,9 @@ export function validate(config: Record<string, unknown>) {
         skipMissingProperties: false,
     });
 
-    // if (errors.length > 0) {
-    //     throw new Error(errors.toString());
-    // }
+    if (errors.length > 0) {
+        throw new Error(errors.toString());
+    }
 
     return validatedConfig;
 }
