@@ -1,16 +1,16 @@
 import { plainToInstance } from 'class-transformer';
 import { IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, Max, Min, validateSync } from 'class-validator';
 
-enum Environment {
-    Development = 'development',
-    Production = 'production',
-    Test = 'test',
-    Provision = 'provision',
-}
+// enum Environment {
+//     Development = 'development',
+//     Production = 'production',
+//     Test = 'test',
+//     Provision = 'provision',
+// }
 
 class EnvironmentVariables {
-    @IsEnum(Environment)
-    NODE_ENV: Environment;
+    // @IsEnum(Environment)
+    // NODE_ENV: Environment;
 
     @IsNumber()
     @Min(0)
