@@ -24,10 +24,14 @@ async function bootstrap() {
     SwaggerModule.setup('api', app, documentFactory);
 
     app.enableCors({
-        origin: '*',
+        origin: ['http://localhost:3001'],
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-        allowedHeaders: 'Content-Type, Accept',
+        allowedHeaders: 'Content-Type, Accept, Authorization', // Adicionado 'Authorization'
+        credentials: true, // Permitir envio de cookies e cabeçalhos de autenticação
     });
     await app.listen(process.env.PORT ?? 3000);
 }
-bootstrap();
+
+bootstrap().catch(error => {
+    console.error('Error during application bootstrap:', error);
+});
