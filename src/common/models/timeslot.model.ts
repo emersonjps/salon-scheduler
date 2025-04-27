@@ -11,7 +11,7 @@ import { Schedule } from './schedule.model';
 })
 export class TimeSlot extends Model {
     @Column({ primaryKey: true, autoIncrement: true })
-    timeslot_id: number;
+    id: number;
 
     @ForeignKey(() => Schedule)
     @Column

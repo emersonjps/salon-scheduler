@@ -12,7 +12,7 @@ import { User } from './user.model';
 })
 export class Schedule extends Model {
     @Column({ primaryKey: true, autoIncrement: true })
-    schedule_id: number;
+    id: number;
 
     @Column
     start_date: Date;
