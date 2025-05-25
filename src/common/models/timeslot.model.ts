@@ -6,6 +6,7 @@ import { Schedule } from './schedule.model';
     modelName: 'time_slot',
     createdAt: 'created_at',
     updatedAt: 'updated_at',
+    deletedAt: 'deleted_at',
     timestamps: true,
     paranoid: false,
 })

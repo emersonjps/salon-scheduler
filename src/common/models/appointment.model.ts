@@ -6,6 +6,7 @@ import { User } from './user.model';
     modelName: 'appointment',
     createdAt: 'created_at',
     updatedAt: 'updated_at',
+    deletedAt: 'deleted_at',
     timestamps: true,
     paranoid: false,
 })

@@ -6,6 +6,7 @@ import { UserRole } from 'src/auth/constants/User.Roles';
     modelName: 'user',
     createdAt: 'created_at',
     updatedAt: 'updated_at',
+    deletedAt: 'deleted_at',
     timestamps: true,
     paranoid: false,
 })
