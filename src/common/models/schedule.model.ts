@@ -1,6 +1,7 @@
-import { Table, Column, Model, ForeignKey, BelongsTo, HasMany } from 'sequelize-typescript';
+import { Table, Column, Model, ForeignKey, BelongsTo, HasMany, DataType } from 'sequelize-typescript';
 import { TimeSlot } from './timeslot.model';
 import { User } from './user.model';
+import { DaysOfWeek } from 'src/auth/constants/DaysOfWeek';
 
 @Table({
     tableName: 'schedules',
@@ -20,6 +21,9 @@ export class Schedule extends Model {
 
     @Column
     end_date: Date;
+
+    @Column({ type: DataType.ENUM(...Object.values(DaysOfWeek)), allowNull: false })
+    day_of_week: DaysOfWeek;
 
     @Column
     description: string;

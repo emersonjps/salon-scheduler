@@ -29,5 +29,14 @@
         "@repositories/*": ["./src/repositories/*"],
     },
     "resolveJsonModule": true
-}
+},
+"include": [
+    "src",
+    "migrations"
+],
+"exclude": [
+    "node_modules",
+    "dist",
+    "**/*.spec.ts"
+],
 }
