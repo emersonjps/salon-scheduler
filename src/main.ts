@@ -24,7 +24,7 @@ async function bootstrap() {
     SwaggerModule.setup('api', app, documentFactory);
 
     app.enableCors({
-        origin: ['http://localhost:3001'],
+        origin: ['http://localhost:5173'],
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         allowedHeaders: 'Content-Type, Accept, Authorization', // Adicionado 'Authorization'
         credentials: true, // Permitir envio de cookies e cabeçalhos de autenticação
